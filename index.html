@@ -41,18 +41,25 @@
             padding: 2px 4px;
             border-radius: 3px;
             font-family: monospace;
+            color: #c7254e;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        strong {
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
     <h1>Privacy Policy for Humva Recorder</h1>
-    <p class="subtitle">Last Updated: November 27, 2025</p>
+    <p class="subtitle">Last Updated: December 6, 2025</p>
 
     <section>
         <h2>1. Introduction</h2>
         <p>
             Humva Recorder is a Chrome extension designed to help users record browser tabs or desktop screens for personal or professional use. 
-            This Privacy Policy explains how we collect, use, store, and protect your data when you use our extension. 
+            This Privacy Policy explains how we collect, use, store, and protect your data. 
             By installing and using Humva Recorder, you agree to the terms outlined in this policy.
         </p>
     </section>
@@ -60,115 +67,110 @@
     <section>
         <h2>2. Data Collection</h2>
         <p>
-            Humva Recorder only collects data that you explicitly choose to capture through the extension’s core recording function:
+            Humva Recorder collects data solely to provide its core recording and video generation functionalities. We only collect data when you actively initiate a recording or log in to our service.
         </p>
         <ul>
-            <li>Screen/ tab content (including text, images, videos, and audio) that you actively record by clicking the "Start Recording" button.</li>
-            <li>Local settings (e.g., preferred recording format, export options) that you configure within the extension.</li>
+            <li><strong>User Account Information:</strong> When you log in via <code>humva.studio</code> or <code>test.humva.com</code>, we process your authentication token to verify your identity and manage your recording history.</li>
+            <li><strong>Screen & Audio Content:</strong> We capture the video and audio content of the specific tabs or screens you explicitly choose to record.</li>
+            <li><strong>Technical Settings:</strong> Local preferences (e.g., recording resolution, audio source) configured within the extension.</li>
         </ul>
         <p>
-            <strong>Important Note:</strong> No data is collected automatically, passively, or without your explicit action. 
-            We do NOT collect personally identifiable information (PII), health data, financial information, location data, web history, user activity, or any other sensitive data.
+            <strong>Important:</strong> We do NOT collect browsing history, financial data, health data, or personally identifiable information (PII) other than what is required for authentication.
         </p>
     </section>
 
     <section>
         <h2>3. Use of Data</h2>
         <p>
-            All captured content and settings are used solely to provide the extension’s core functionality:
+            All captured content is used exclusively to fulfill the extension’s purpose:
         </p>
         <ul>
-            <li>Storing your recordings locally on your device for easy access.</li>
-            <li>Allowing you to export recordings in your preferred format (via the <code>downloads</code> permission).</li>
-            <li>Maintaining your personalized settings across browser sessions (via the <code>storage</code> permission).</li>
+            <li><strong>Cloud Storage & Processing:</strong> Due to browser storage limits (IndexedDB), large video files are uploaded to our secure cloud servers (<code>humva.com</code>) and processing servers to ensure data integrity.</li>
+            <li><strong>Service Management:</strong> We use authentication data to associate recordings with your account and allow you to manage or download your videos from our dashboard.</li>
+            <li><strong>Feature Execution:</strong> To generate product promotion videos or process asynchronous tasks via our dedicated calculation services.</li>
         </ul>
-        <p>
-            No data is used for analytics, advertising, or any purpose unrelated to the extension’s single purpose (screen/tab recording and local content management).
-        </p>
     </section>
 
     <section>
         <h2>4. Permissions & Their Purpose</h2>
         <p>
-            Humva Recorder requests the following Chrome permissions to enable its core features. All permissions are used exclusively for local functionality (no remote data transfer):
+            Humva Recorder requests specific permissions to enable its features. All host permissions are strictly limited to our service domains:
         </p>
         <ul>
-            <li><code>tabs</code>: Accesses tab titles and URLs to associate recordings with their source tab (e.g., labeling a recording "YouTube - Tutorial Video").</li>
-            <li><code>tabCapture</code>: Captures audio/video streams of active browser tabs for tab-specific recording.</li>
-            <li><code>desktopCapture</code>: Captures desktop screen content for full-screen recording scenarios (e.g., recording multiple windows).</li>
-            <li><code>storage</code>: Stores your local settings (e.g., export format, recording quality) and recording metadata (no actual content is stored via this API).</li>
-            <li><code>downloads</code>: Allows you to export recorded files to your device’s local storage.</li>
-            <li><code>scripting</code>: Injects lightweight scripts to optimize recording compatibility with web pages (e.g., adjusting video playback for smooth capture).</li>
-            <li><code>notifications</code>: Sends real-time alerts (e.g., "Recording Started" or "Export Completed") to keep you informed of task status.</li>
+            <li><code>host_permissions</code> (e.g., <code>https://humva.studio/*</code>, <code>https://humva.com/*</code>): Required to communicate with our backend servers for user login, obtaining cloud storage (COS) credentials, uploading large video files, and querying task status.</li>
+            <li><code>tabs</code> & <code>tabCapture</code>: To access the title of the tab being recorded and capture the media stream.</li>
+            <li><code>desktopCapture</code>: To allow recording of the entire screen or specific application windows.</li>
+            <li><code>storage</code>: To save user preferences and temporary states locally.</li>
+            <li><code>downloads</code>: To allow users to download their processed videos from our servers to their local device.</li>
+            <li><code>scripting</code>: To optimize page compatibility during recording sessions.</li>
         </ul>
     </section>
 
     <section>
         <h2>5. Data Storage & Protection</h2>
         <p>
-            All captured content and settings are stored <strong>locally on your device</strong> (via Chrome’s native storage APIs and your device’s file system). 
-            No data is uploaded to any remote servers, cloud storage, or third-party services.
-        </p>
-        <p>
-            You have full control over your data:
+            Unlike extensions that store data purely locally, <strong>Humva Recorder utilizes secure cloud storage</strong> to handle large video files that exceed browser limits.
         </p>
         <ul>
-            <li>You can delete recordings directly from your device’s file manager.</li>
-            <li>You can reset extension settings via the extension’s "Settings" page, which clears all stored preferences.</li>
-            <li>Uninstalling the extension will not delete your recorded files (they remain in your device’s default download folder).</li>
+            <li><strong>Data Transmission:</strong> Video data is encrypted and transmitted securely to our designated cloud storage domains after you explicitly consent by starting a recording and logging in.</li>
+            <li><strong>Access Control:</strong> Access to uploaded content is restricted to the authenticated user.</li>
+            <li><strong>Data Retention:</strong> You have full control over your data. You can delete your recordings via the extension interface or your account dashboard at any time.</li>
         </ul>
     </section>
 
     <section>
         <h2>6. Third-Party Access</h2>
         <p>
-            We do not sell, rent, transfer, or share any user data with third parties. No third-party services, APIs, or servers have access to your recordings, settings, or any other data related to Humva Recorder.
+            We do not sell, rent, or trade your personal data. We function as the sole data controller.
+        </p>
+        <p>
+            <strong>Service Providers:</strong> We may use trusted cloud infrastructure providers (e.g., Object Storage Services) solely for the purpose of storing your encrypted video files. These providers do not have rights to access or use your data for their own purposes.
         </p>
     </section>
 
     <section>
         <h2>7. User Control</h2>
         <p>
-            You retain full control over your recording activities:
+            You retain full ownership of your content:
         </p>
         <ul>
-            <li>Recordings only start when you click the "Start Recording" button and stop when you click "Stop" or close the extension.</li>
-            <li>You can pause or cancel recordings at any time.</li>
-            <li>You choose whether to save or discard recordings after stopping them.</li>
+            <li><strong>Consent:</strong> Recording only begins when you click "Start Recording."</li>
+            <li><strong>Cancellation:</strong> You can stop or cancel the upload process at any time.</li>
+            <li><strong>Deletion:</strong> You may delete your account or specific video files, which will remove them from our servers.</li>
         </ul>
     </section>
 
     <section>
         <h2>8. Changes to This Privacy Policy</h2>
         <p>
-            We may update this Privacy Policy from time to time to reflect changes in the extension’s functionality or Chrome’s developer policies. 
-            When we make changes, we will update the "Last Updated" date at the top of this page. 
-            We recommend reviewing this policy periodically for any updates.
-        </p>
-        <p>
-            Significant changes will be notified via a pop-up message in the extension or an update note in the Chrome Web Store.
+            We may update this policy to reflect changes in functionality or regulations. 
+            Significant changes (especially regarding data handling) will be notified via an extension update or email. 
+            The "Last Updated" date at the top indicates the latest revision.
         </p>
     </section>
 
     <section>
         <h2>9. Contact Us</h2>
         <p>
-            If you have any questions, concerns, or feedback about this Privacy Policy or Humva Recorder, please contact us at:
+            If you have questions about this Privacy Policy or our data practices, please contact us at:
         </p>
         <p>
             <a href="mailto:rbhumva@gmail.com">rbhumva@gmail.com</a>
         </p>
     </section>
+
     <section>
         <h2>10. Host Permission Usage Limits</h2>
         <p>
-            Humva Recorder requests <code>host_permissions</code> only to access content from web pages/tabs that you explicitly select for recording. This permission is used for the sole purpose of capturing the content you choose to record, and:
+            Humva Recorder adheres to Chrome's <strong>Limited Use Policy</strong>. Our use of host permissions is strictly limited to:
         </p>
         <ul>
-            <li>We do NOT scan, monitor, or collect data from web pages you do not actively record;</li>
-            <li>We do NOT access sensitive page content (e.g., login forms, payment pages) unless you explicitly include them in a recording;</li>
-            <li>Host permission access is limited to the duration of your recording session—access ends when you stop recording.</li>
+            <li><strong>Authentication:</strong> Verifying user identity on <code>humva.studio</code>.</li>
+            <li><strong>Core Functionality:</strong> Uploading recording data to <code>humva.com</code> and our processing servers because local browser storage is insufficient for high-quality video files.</li>
         </ul>
+        <p>
+            We do <strong>not</strong> use host permissions to track user browsing activity on unrelated websites, inject ads, or scrape data for marketing purposes.
+        </p>
     </section>
 </body>
 </html>
