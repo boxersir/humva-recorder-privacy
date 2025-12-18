@@ -53,7 +53,7 @@
 </head>
 <body>
     <h1>Privacy Policy for Humva Recorder</h1>
-    <p class="subtitle">Last Updated: December 6, 2025</p>
+    <p class="subtitle">Last Updated: December 18, 2025</p>
 
     <section>
         <h2>1. Introduction</h2>
@@ -70,7 +70,7 @@
             Humva Recorder collects data solely to provide its core recording and video generation functionalities. We only collect data when you actively initiate a recording or log in to our service.
         </p>
         <ul>
-            <li><strong>User Account Information:</strong> When you log in via <code>humva.studio</code> or <code>test.humva.com</code>, we process your authentication token to verify your identity and manage your recording history.</li>
+            <li><strong>User Account Information:</strong> When you log in (including via Google Sign-In), we collect your email address, name, and profile picture to verify your identity, create your account, and manage your recording history.</li>
             <li><strong>Screen & Audio Content:</strong> We capture the video and audio content of the specific tabs or screens you explicitly choose to record.</li>
             <li><strong>Technical Settings:</strong> Local preferences (e.g., recording resolution, audio source) configured within the extension.</li>
         </ul>
@@ -85,7 +85,7 @@
             All captured content is used exclusively to fulfill the extension’s purpose:
         </p>
         <ul>
-            <li><strong>Cloud Storage & Processing:</strong> Due to browser storage limits (IndexedDB), large video files are uploaded to our secure cloud servers (<code>humva.com</code>) and processing servers to ensure data integrity.</li>
+            <li><strong>Cloud Storage & Processing:</strong> Due to browser storage limits (IndexedDB), large video files are uploaded to our secure cloud servers (<code>humva.studio</code>) and processing servers to ensure data integrity.</li>
             <li><strong>Service Management:</strong> We use authentication data to associate recordings with your account and allow you to manage or download your videos from our dashboard.</li>
             <li><strong>Feature Execution:</strong> To generate product promotion videos or process asynchronous tasks via our dedicated calculation services.</li>
         </ul>
@@ -94,15 +94,24 @@
     <section>
         <h2>4. Permissions & Their Purpose</h2>
         <p>
-            Humva Recorder requests specific permissions to enable its features. All host permissions are strictly limited to our service domains:
+            Humva Recorder requests specific permissions to enable its features:
         </p>
         <ul>
-            <li><code>host_permissions</code> (e.g., <code>https://humva.studio/*</code>, <code>https://humva.com/*</code>): Required to communicate with our backend servers for user login, obtaining cloud storage (COS) credentials, uploading large video files, and querying task status.</li>
+            <li><strong><code>host_permissions (&lt;all_urls&gt;)</code>:</strong> This extension requires access to all websites for the following core functionalities:
+                <ul>
+                    <li><strong>Screen Recording:</strong> The extension uses chrome.tabCapture API to record any tab the user chooses, which requires host permissions for that tab.</li>
+                    <li><strong>Content Capture:</strong> During recording, the extension needs to inject content scripts to track user interactions (clicks, keyboard inputs), capture page assets (images, videos, icons) for replay purposes, and scrape page structure and metadata for the recording context.</li>
+                    <li><strong>Dynamic Tab Support:</strong> Users can switch between different tabs during recording, requiring permissions for any tab they navigate to.</li>
+                    <li><strong>Note:</strong> The extension only activates when users explicitly start a recording and only accesses content from tabs they choose to record.</li>
+                </ul>
+            </li>
+            <li><strong><code>cookies</code>:</strong> Required to maintain user authentication session with humva.studio. When users log in to manage their recordings, we need to read authentication cookies to verify their session and enable features like uploading recorded videos to their account, accessing their recording history, and syncing user preferences across devices.</li>
             <li><code>tabs</code> & <code>tabCapture</code>: To access the title of the tab being recorded and capture the media stream.</li>
-            <li><code>desktopCapture</code>: To allow recording of the entire screen or specific application windows.</li>
             <li><code>storage</code>: To save user preferences and temporary states locally.</li>
-            <li><code>downloads</code>: To allow users to download their processed videos from our servers to their local device.</li>
-            <li><code>scripting</code>: To optimize page compatibility during recording sessions.</li>
+            <li><code>scripting</code>: To inject content scripts for interaction tracking during recording sessions.</li>
+            <li><code>offscreen</code>: To handle video processing in a background context.</li>
+            <li><code>webNavigation</code>: To detect page navigation events during recording.</li>
+            <li><code>system.display</code>: To optimize recording resolution based on display settings.</li>
         </ul>
     </section>
 
@@ -112,7 +121,7 @@
             Unlike extensions that store data purely locally, <strong>Humva Recorder utilizes secure cloud storage</strong> to handle large video files that exceed browser limits.
         </p>
         <ul>
-            <li><strong>Data Transmission:</strong> Video data is encrypted and transmitted securely to our designated cloud storage domains after you explicitly consent by starting a recording and logging in.</li>
+            <li><strong>Data Transmission:</strong> All data is transmitted using secure encryption protocols (HTTPS/TLS) to our designated cloud storage domains after you explicitly consent by starting a recording and logging in.</li>
             <li><strong>Access Control:</strong> Access to uploaded content is restricted to the authenticated user.</li>
             <li><strong>Data Retention:</strong> You have full control over your data. You can delete your recordings via the extension interface or your account dashboard at any time.</li>
         </ul>
@@ -162,14 +171,17 @@
     <section>
         <h2>10. Host Permission Usage Limits</h2>
         <p>
-            Humva Recorder adheres to Chrome's <strong>Limited Use Policy</strong>. Our use of host permissions is strictly limited to:
+            Humva Recorder adheres to Chrome's <strong>Limited Use Policy</strong>. Our use of host permissions (<code>&lt;all_urls&gt;</code>) is strictly limited to:
         </p>
         <ul>
-            <li><strong>Authentication:</strong> Verifying user identity on <code>humva.studio</code>.</li>
-            <li><strong>Core Functionality:</strong> Uploading recording data to <code>humva.com</code> and our processing servers because local browser storage is insufficient for high-quality video files.</li>
+            <li><strong>User-Initiated Recording Only:</strong> We only access webpage content when users explicitly start a screen recording.</li>
+            <li><strong>Selected Tabs Only:</strong> The extension only captures content from tabs that users actively choose to record.</li>
+            <li><strong>No Background Tracking:</strong> We do not monitor, track, or collect data from tabs that are not being recorded.</li>
+            <li><strong>Authentication:</strong> Verifying user identity on <code>humva.studio</code> using cookies.</li>
+            <li><strong>Core Functionality:</strong> Uploading recording data to <code>humva.studio</code> and our processing servers because local browser storage is insufficient for high-quality video files.</li>
         </ul>
         <p>
-            We do <strong>not</strong> use host permissions to track user browsing activity on unrelated websites, inject ads, or scrape data for marketing purposes.
+            We do <strong>not</strong> use host permissions to track user browsing activity on unrelated websites, inject ads, or scrape data for marketing purposes outside of active recording sessions.
         </p>
     </section>
 </body>
